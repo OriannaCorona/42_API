@@ -17,7 +17,7 @@
 .glyphicon-remove{
 	margin: 2% 2%;
 }
-input {
+input, .listaHecha {
 	border-radius: 5px 5px;
 	border: solid 1px grey;
 }
@@ -29,12 +29,25 @@ input {
 	font-family: 'Lobster', cursive;
 }
 .inputLista{
-	background-color: #99b5b9;
+	background-color: transparent;
 	text-decoration: underline;
 	margin-left: 2%;
 	border: none;
 	color: white;
 }
 .btnGuardarTarjeta{
-	background-color: #d9baa6;	
+	background-color: #99b5b9;	
+}
+.listaHecha {
+	display: block;
+	background-color: #d9baa6;
+	width: 17%;
+	margin-top: 2.5%;
+}
+.h3Tarjeta{
+	font-family: 'Dosis', sans-serif;
+	font-size: 200%;
+	color: #a9d0f5;
+	text-align: center;	
+	margin-top: 0%;
 }

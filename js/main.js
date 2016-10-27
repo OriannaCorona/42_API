@@ -20,8 +20,11 @@ function desplegarBtnGuardar() {
 	var linkTarjeta = document.createElement("a");
 	btnGuardar.onclick = function crearListaNueva(e) {
 		var viejoDiv = e.target.parentElement;
-		var tituloLista = document.createTextNode(inputNuevaLista.value); 
-		listaHecha.appendChild(tituloLista);
+		var tituloLista = document.createTextNode(inputNuevaLista.value);
+		var h3Tarjeta = document.createElement("h3");
+		h3Tarjeta.setAttribute("class", "h3Tarjeta");
+		h3Tarjeta.appendChild(tituloLista); 
+		listaHecha.appendChild(h3Tarjeta);
 	  	listaHecha.setAttribute("class", "listaHecha");
 	  	viejoDiv.parentElement.replaceChild(listaHecha, viejoDiv);
 	  	linkTarjeta.appendChild(document.createTextNode("Añadir una tarjeta...")); 
@@ -31,28 +34,31 @@ function desplegarBtnGuardar() {
 	  	contenedor.appendChild(nombreLista);  	 	
 	}
 //Para crear una tajeta nueva
-	var inputNuevaTarjeta = document.createElement("input");
-	var btnGuardarTarjeta = document.createElement("button");
-	linkTarjeta.onclick = function crearTarjeta() {
-		var cajaTarjeta = document.createElement("DIV");
-		inputNuevaTarjeta.className = "inputNuevaTarjeta";
+	linkTarjeta.onclick = function crearTarjeta(e) {
+		cajaTarjeta = document.createElement("DIV");
+		var inputNuevaTarjeta = document.createElement("input");
 		var btnGuardarTarjeta = document.createElement("button");
+		inputNuevaTarjeta.className = "inputNuevaTarjeta";
 		btnGuardarTarjeta.className = "btnGuardarTarjeta";
-		var textoBoton = document.createTextNode("Guardar tarjeta");
-		btnGuardarTarjeta.appendChild(textoBoton);
+		textoBoton2 = document.createTextNode("Guardar tarjeta");
+		btnGuardarTarjeta.appendChild(textoBoton2);
 		var tache = document.createElement("SPAN");
   		tache.className = "glyphicon glyphicon-remove";
   		cajaTarjeta.appendChild(inputNuevaTarjeta);
   		cajaTarjeta.appendChild(btnGuardarTarjeta);
   		cajaTarjeta.appendChild(tache);
-  		listaHecha.replaceChild(cajaTarjeta, linkTarjeta);	
-	}
+  		e.target.parentElement.replaceChild(cajaTarjeta, linkTarjeta);
 //Para guardar una tajeta nueva
-	btnGuardarTarjeta.onclick = function guardarTarjeta() {
-		var tarjetaHecha = document.createElement("DIV");
-		var tituloTarjeta = document.createTextNode(inputNuevaTarjeta.value); 
-	  	tarjetaHecha.setAttribute("class", "tarjetaHecha");
-	  	tarjetaHecha.appendChild(tituloTarjeta);
-	  	listaHecha.appendChild(tarjetaHecha); 	
+		btnGuardarTarjeta.onclick = function guardarTarjeta(e) {
+			var tarjetaHecha = document.createElement("DIV");
+			var tituloTarjeta = document.createTextNode(inputNuevaTarjeta.value);
+			var pTarjeta = document.createElement("p");
+			pTarjeta.appendChild(tituloTarjeta);                                                                              
+		  	tarjetaHecha.setAttribute("class", "tarjetaHecha");
+		  	tarjetaHecha.appendChild(pTarjeta);
+		  	e.target.parentElement.parentElement.replaceChild(tarjetaHecha, e.target.parentElement);
+		  	tarjetaHecha.appendChild(linkTarjeta); 	
+		}	
 	}
+
 }
