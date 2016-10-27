@@ -1,0 +1,40 @@
+.fondo{
+	background-color: #99b5b9;
+	height: 500%;
+}
+.btnGuardar, .glyphicon-remove, .well, .btnGuardarTarjeta{
+	color: white; 	
+}
+.btnGuardar, .btnGuardarTarjeta{
+	border-radius: 5px 5px;
+	border: none;
+	padding: .5% 2%;	
+	margin: 2% 0%;	
+}
+.btnGuardar{
+	background-color: #b8ded3;
+} 
+.glyphicon-remove{
+	margin: 2% 2%;
+}
+input {
+	border-radius: 5px 5px;
+	border: solid 1px grey;
+}
+.inputNuevaLista, .inputNuevaTarjeta{
+	display: block;
+}
+.well {
+	background-color: #d9baa6;
+	font-family: 'Lobster', cursive;
+}
+.inputLista{
+	background-color: #99b5b9;
+	text-decoration: underline;
+	margin-left: 2%;
+	border: none;
+	color: white;
+}
+.btnGuardarTarjeta{
+	background-color: #d9baa6;	
+}
