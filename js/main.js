@@ -7,16 +7,21 @@ function desplegarBtnGuardar() {
 	btnGuardar.className = "btnGuardar";
 	var textoBoton = document.createTextNode("Guardar");
 	btnGuardar.appendChild(textoBoton);
-	var tache = document.createElement("SPAN");
-  	tache.className = "glyphicon glyphicon-remove";
   	var nombreLista = document.getElementById("añadirLista");
   	caja.appendChild(inputNuevaLista);
   	caja.appendChild(btnGuardar);
-  	caja.appendChild(tache);
   	var contenedor = document.getElementById("contenedor");
   	contenedor.replaceChild(caja, nombreLista);	  	
 //Para guardar una lista nueva
 	var listaHecha = document.createElement("DIV");
+	listaHecha.ondragover = function allowDrop(e) {//Para poder una tarjeta a otra lista
+    	e.preventDefault();
+	}
+//Para poder una tarjeta a otra lista
+	listaHecha.ondrop = function drop(e) {
+    	e.preventDefault();
+    	var data = e.dataTransfer.getData("text");
+	}
 	var linkTarjeta = document.createElement("a");
 	btnGuardar.onclick = function crearListaNueva(e) {
 		var viejoDiv = e.target.parentElement;
@@ -42,23 +47,23 @@ function desplegarBtnGuardar() {
 		btnGuardarTarjeta.className = "btnGuardarTarjeta";
 		textoBoton2 = document.createTextNode("Guardar tarjeta");
 		btnGuardarTarjeta.appendChild(textoBoton2);
-		var tache = document.createElement("SPAN");
-  		tache.className = "glyphicon glyphicon-remove";
   		cajaTarjeta.appendChild(inputNuevaTarjeta);
   		cajaTarjeta.appendChild(btnGuardarTarjeta);
-  		cajaTarjeta.appendChild(tache);
   		e.target.parentElement.replaceChild(cajaTarjeta, linkTarjeta);
 //Para guardar una tajeta nueva
 		btnGuardarTarjeta.onclick = function guardarTarjeta(e) {
 			var tarjetaHecha = document.createElement("DIV");
+			tarjetaHecha.setAttribute("draggable", "true");//para poder desplazar la tarjeta hecha
+			tarjetaHecha.ondragstart = function(e){//prueba
+    			e.dataTransfer.setData("text", e.target.id);
+			}
 			var tituloTarjeta = document.createTextNode(inputNuevaTarjeta.value);
 			var pTarjeta = document.createElement("p");
 			pTarjeta.appendChild(tituloTarjeta);                                                                              
 		  	tarjetaHecha.setAttribute("class", "tarjetaHecha");
 		  	tarjetaHecha.appendChild(pTarjeta);
 		  	e.target.parentElement.parentElement.replaceChild(tarjetaHecha, e.target.parentElement);
-		  	tarjetaHecha.appendChild(linkTarjeta); 	
+		  	listaHecha.appendChild(linkTarjeta);  		
 		}	
 	}
-
 }

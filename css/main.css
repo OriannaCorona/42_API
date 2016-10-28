@@ -2,7 +2,7 @@
 	background-color: #99b5b9;
 	height: 500%;
 }
-.btnGuardar, .glyphicon-remove, .well, .btnGuardarTarjeta{
+.btnGuardar, .glyphicon-remove, .well, .btnGuardarTarjeta, .inputLista{
 	color: white; 	
 }
 .btnGuardar, .btnGuardarTarjeta{
@@ -21,33 +21,41 @@ input, .listaHecha {
 	border-radius: 5px 5px;
 	border: solid 1px grey;
 }
-.inputNuevaLista, .inputNuevaTarjeta{
+.listaHecha{
+	float: left;
+	font-family: 'Dosis', sans-serif;
+}
+.inputNuevaLista, .inputNuevaTarjeta {
 	display: block;
 }
 .well {
 	background-color: #d9baa6;
 	font-family: 'Lobster', cursive;
 }
-.inputLista{
-	background-color: transparent;
+.inputLista, .h3Tarjeta {
 	text-decoration: underline;
+} 
+.inputLista {
+	background-color: transparent;
 	margin-left: 2%;
 	border: none;
-	color: white;
 }
-.btnGuardarTarjeta{
+.btnGuardarTarjeta {
 	background-color: #99b5b9;	
 }
 .listaHecha {
-	display: block;
 	background-color: #d9baa6;
 	width: 17%;
-	margin-top: 2.5%;
+	margin: 2.5% 1.5% 0% 0%;
 }
 .h3Tarjeta{
-	font-family: 'Dosis', sans-serif;
 	font-size: 200%;
-	color: #a9d0f5;
+	color: #de6455;
 	text-align: center;	
 	margin-top: 0%;
+}
+.scroll{
+	overflow-x: scroll;
+	height: 580px;
+	white-space: nowrap;
 }
