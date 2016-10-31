@@ -14,22 +14,15 @@ function desplegarBtnGuardar() {
   	contenedor.replaceChild(caja, nombreLista);	  	
 //Para guardar una lista nueva
 	var listaHecha = document.createElement("DIV");
-	listaHecha.ondragover = function allowDrop(e) {//Para poder una tarjeta a otra lista
-    	e.preventDefault();
-	}
-//Para poder una tarjeta a otra lista
-	listaHecha.ondrop = function drop(e) {
-    	e.preventDefault();
-    	var data = e.dataTransfer.getData("text");
-	}
+	listaHecha.setAttribute("id", "listaGuardada");
 	var linkTarjeta = document.createElement("a");
 	btnGuardar.onclick = function crearListaNueva(e) {
 		var viejoDiv = e.target.parentElement;
 		var tituloLista = document.createTextNode(inputNuevaLista.value);
-		var h3Tarjeta = document.createElement("h3");
-		h3Tarjeta.setAttribute("class", "h3Tarjeta");
-		h3Tarjeta.appendChild(tituloLista); 
-		listaHecha.appendChild(h3Tarjeta);
+		var h3Lista = document.createElement("h3");
+		h3Lista.setAttribute("class", "h3Tarjeta");
+		h3Lista.appendChild(tituloLista); 
+		listaHecha.appendChild(h3Lista);
 	  	listaHecha.setAttribute("class", "listaHecha");
 	  	viejoDiv.parentElement.replaceChild(listaHecha, viejoDiv);
 	  	linkTarjeta.appendChild(document.createTextNode("Añadir una tarjeta...")); 
@@ -54,16 +47,42 @@ function desplegarBtnGuardar() {
 		btnGuardarTarjeta.onclick = function guardarTarjeta(e) {
 			var tarjetaHecha = document.createElement("DIV");
 			tarjetaHecha.setAttribute("draggable", "true");//para poder desplazar la tarjeta hecha
-			tarjetaHecha.ondragstart = function(e){//prueba
-    			e.dataTransfer.setData("text", e.target.id);
-			}
 			var tituloTarjeta = document.createTextNode(inputNuevaTarjeta.value);
 			var pTarjeta = document.createElement("p");
 			pTarjeta.appendChild(tituloTarjeta);                                                                              
 		  	tarjetaHecha.setAttribute("class", "tarjetaHecha");
+		  	tarjetaHecha.setAttribute("id", "tarjetaGuardada");//le dí un id para poder llamarlo por su id al momento de quererlo mover
 		  	tarjetaHecha.appendChild(pTarjeta);
 		  	e.target.parentElement.parentElement.replaceChild(tarjetaHecha, e.target.parentElement);
-		  	listaHecha.appendChild(linkTarjeta);  		
-		}	
+		  	listaHecha.appendChild(linkTarjeta); 
+		  	//pruebas de drag and drop
+			tarjetaHecha.addEventListener("dragstart", iniciarArrastre);//para iniciar el arrastre
+			function iniciarArrastre(e) {
+				listaHecha.style.background = "#fcedc4";//cambiar el color de la lista a amarillo cuando se toma una tarjeta
+				e.dataTransfer.setData("text",e.target.id);
+				listaHecha.addEventListener("dragend", terminarArrastre);
+				function terminarArrastre(e){
+					listaHecha.style.background = "#d9baa6";//cambiar el color de la lista a rosa cuando se suelta la tarjeta en otra lista	
+				}	
+			}
+			listaHecha.addEventListener("drop", soltarElemento);//cuando se suelta un elemento dentro de un receptor
+			function soltarElemento(e) {
+				e.stopPropagation();
+    			e.preventDefault();
+    			data = e.dataTransfer.getData("text");
+    			listaHecha.appendChild(document.getElementById(data));
+			}
+			listaHecha.addEventListener("dragover", aterrizarElemento);//cuando se arrastra un elemento dentro del receptor
+			function aterrizarElemento(e) {
+				e.preventDefault();
+				listaHecha.style.background = "#99b5b9";//cambia el color de fondo a azul cuando la tarjeta pasa por encima
+			}
+			    	  		
+		}
+			
 	}
+	
+
+	/**/
 }
+
